@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['fridge.montalabs.com']
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -132,3 +133,6 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }
+
+# Daphne
+ASGI_APPLICATION = "mysite.asgi.application"
