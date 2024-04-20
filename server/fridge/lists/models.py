@@ -6,6 +6,9 @@ class MealPlan(models.Model):
     date_scheduled = models.DateField()
 
 
-class UsersList(models.Model):
-    fridge_ingredients = models.ManyToManyField('meals.Ingredient')
-    meal_plans = models.ManyToManyField(MealPlan)
+class IngredientsList(models.Model):
+    fridge_ingredients = models.ForeignKey('meals.Ingredient', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.fridge_ingredients.name
+    

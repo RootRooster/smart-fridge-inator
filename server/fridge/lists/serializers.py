@@ -1,4 +1,4 @@
-from .models import MealPlan, UsersList
+from .models import MealPlan, IngredientsList
 from rest_framework import serializers
 
 
@@ -11,8 +11,7 @@ class MealPlanSerializer(serializers.HyperlinkedModelSerializer):
         return super().create(validated_data)
 
 
-class UsersListSerializer(serializers.HyperlinkedModelSerializer):
+class IngredientsListSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = UsersList
-        fields = ['fridge_ingredients', 'meal_plans']
-    
+        model = IngredientsList
+        fields = ['fridge_ingredients']

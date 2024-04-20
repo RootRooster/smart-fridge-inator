@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from .models import MealPlan, UsersList
-from .serializers import MealPlanSerializer, UsersListSerializer
+from .models import MealPlan, IngredientsList
+from .serializers import MealPlanSerializer, IngredientsListSerializer
 from rest_framework import viewsets
 
 
-class UsersListViewSet(viewsets.ModelViewSet):
-    queryset = UsersList.objects.all()
-    serializer_class = UsersListSerializer
+class IngredientsListViewSet(viewsets.ModelViewSet):
+    queryset = IngredientsList.objects.all()
+    serializer_class = IngredientsListSerializer
 
 
 class MealPlanViewSet(viewsets.ModelViewSet):
