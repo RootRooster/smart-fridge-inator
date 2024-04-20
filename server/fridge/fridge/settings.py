@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-@$hy7lcnglz_g2$gm=$8z^r0c78w^$j(jyuwelf1h(amy=*!!x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fridge.montalabs.com']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "meals",
     "lists",
-    'rest_framework',
+    "rest_framework",
+    "channels",
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,10 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Websocket channel configuration
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
