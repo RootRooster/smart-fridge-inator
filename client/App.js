@@ -6,6 +6,10 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {NavigationContainer} from '@react-navigation/native';
 
+import Icon from 'react-native-ico-material-design';
+
+import LinearGradient from 'react-native-gradients';
+
 import MealPlanScreen from './components/mealplan';
 import ShoppingListScreen from './components/shoppinglist';
 import FridgeScreen from './components/fridge';
@@ -60,27 +64,40 @@ export default function App() {
   return (
     // recepti, meal plan, shopping list
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{title: 'SFI'}}
-        />
-        <Stack.Screen name="Shopping List" component={ShoppingListScreen} />
-        <Stack.Screen name="Fridge" component={FridgeScreen} />
-        <Stack.Screen name="Recipes" component={RecipeScreen}/>
-        <Stack.Screen name="Recipe" component={RecipePage}/>
-        <Stack.Screen name="Meal Plan" component={MealPlanScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{title: 'SFI'}}
+          />
+          <Stack.Screen name="Shopping List" component={ShoppingListScreen} />
+          <Stack.Screen name="Fridge" component={FridgeScreen} />
+          <Stack.Screen name="Recipes" component={RecipeScreen}/>
+          <Stack.Screen name="Recipe" component={RecipePage}/>
+          <Stack.Screen name="Meal Plan" component={MealPlanScreen} />
+        </Stack.Navigator>
+        <View style={styles.navigationBar}>
+          <Icon name="add-label-button" />
+          <Icon name="add-label-button" />
+          <Icon name="add-label-button" />
+        </View>
+      </NavigationContainer>
   );
 }
 
 
 const styles = StyleSheet.create({
+  navigationBar: {
+    backgroundColor: 'red',
+    color: '#fff',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#FF9900',
     alignItems: 'center',
     padding: 20,
     paddingTop: 50,

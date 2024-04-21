@@ -12,7 +12,6 @@ import { Picker } from '@react-native-picker/picker';
 import SelectDropdown from 'react-native-select-dropdown';
 
 
-
 const FridgeListScreen = ({navigation, route}) => {
     const filterCategories = ['All', 'Vegetable', 'Meat', 'Dairy'];
     const [selectedFilter, setSelectedFilter] = useState('All');
@@ -28,7 +27,7 @@ const FridgeListScreen = ({navigation, route}) => {
         const data = await response.json();
   
         // Extract ingredients from the first 10 items
-        const ingredientList = data.slice(20, 40).flatMap((item) => item);
+        const ingredientList = data.results.slice(0, 20).flatMap((item) => item);
   
         setIngredients(ingredientList);
       } catch (error) {
@@ -60,6 +59,7 @@ const FridgeListScreen = ({navigation, route}) => {
         <FlatList
           data={ingredients}
           renderItem={renderIngredientItem}
+          style={styles.listContainer}
         //   keyExtractor={item => item.name}
           contentContainerStyle={styles.listContainer}
         />
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: '#FF9900'
   },
   filterContainer: {
     flexDirection: 'row',
@@ -111,20 +112,22 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    paddingBottom: 20,
     textAlign: 'center',
-    backgroundColor: '#f2f2f2',
+    color: 'white',
   },
   listContainer: {
     paddingBottom: 20,
+    borderRadius: 15,
+    backgroundColor: '#020202',
   },
   itemContainer: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#020202',
     padding: 15,
     // marginBottom: 10,
-    borderRadius: 5,
   },
   itemText: {
+    color: 'white',
     fontSize: 16,
   },
 });

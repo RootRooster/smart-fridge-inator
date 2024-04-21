@@ -34,18 +34,19 @@ const RecipePage = ({navigation, route}) => {
     fetchMeals();
   }, []);
 
-  const [meal, setMeal] = useState([]);
+  const [meal, setMeal] = useState({name: "", instructions: "", amount_ingredients_str: []});
 
   const fetchMeals = async () => {
     try {
       const response = await fetch('https://fridge.montalabs.com/meals/meals/');
       const data = await response.json();
-      setMeal(data.filter((item) => item.tmdb_id === route.params.id)[0]);
+      setMeal(data.results.filter((item) => item.tmdb_id === route.params.id)[0]);
     } catch (error) {
       console.error('Error fetching meals:', error);
     }
   };
   console.log(meal);
+
   return (
     <ScrollView style={styles.container}>
       <Image source={{ uri: meal.image_url }} style={styles.image} />
@@ -53,11 +54,11 @@ const RecipePage = ({navigation, route}) => {
         <Text style={styles.title}>{meal.name}</Text>
         <Text style={styles.description}>{meal.instructions}</Text>
         <Text style={styles.ingredientsTitle}>Ingredients:</Text>
-        {/* {meal.amount_ingrediends.map((ingredient, index) => (
+        {meal.amount_ingredients_str.map((ingredient, index) => (
           <Text key={index} style={styles.ingredient}>
             - {ingredient}
           </Text>
-        ))} */}
+        ))}
       </View>
     </ScrollView>
   );

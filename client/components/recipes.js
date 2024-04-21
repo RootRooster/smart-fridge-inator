@@ -52,7 +52,7 @@ const ImageGallery = () => {
         const data = await response.json();
   
         // Extract ingredients from the first 10 items
-        const mealsList = data.slice(0, 20).flatMap((item) => item);
+        const mealsList = data.results.slice(0, 20).flatMap((item) => item);
   
         setMeals(mealsList);
       } catch (error) {
@@ -71,7 +71,11 @@ const ImageGallery = () => {
             >
             <View key={index} style={styles.imageContainer}>
                 <Image source={{ uri: meal.image_url }} style={styles.image} />
-                <Text style={styles.title}>{meal.name}</Text>
+                <Text style={styles.title}>
+                  {meal.name}{"\n"}
+                  <Text style={styles.description}>{meal.category_name} - {meal.area_name}</Text>  
+                </Text>
+                
                 {/* <Text>Description</Text> */}
             </View>
             </TouchableOpacity>
@@ -103,21 +107,35 @@ const styles = StyleSheet.create({
     container: {
       flexGrow: 1,
       paddingVertical: 20,
+      backgroundColor: '#202020',
     },
     imageContainer: {
+      flexDirection: 'row',
+      width: '90%',
+      marginHorizontal: '5%',
       marginBottom: 20,
-      alignItems: 'center',
+      padding: 10,
+      // backgroundColor: 'red',
+      backgroundColor: '#0f0f0f',
+      borderRadius: 10,
+      // alignItems: 'center',
     },
     image: {
-      width: '90%',
-      height: 300,
+      width: 100,
+      height: 100,
       resizeMode: 'cover',
       borderRadius: 10,
     },
     title: {
+      width: '70%',
       fontSize: 18,
       fontWeight: 'bold',
-      marginTop: 10,
+      margin: 10,
+      color: '#fff',
+    },
+    description: {
+      fontSize: 16,
+      color: '#fff',
     },
   });
 
