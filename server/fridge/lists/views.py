@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import MealPlan, IngredientsList
 from .serializers import MealPlanSerializer, IngredientsListSerializer
@@ -17,3 +18,10 @@ class IngredientsListViewSet(viewsets.ModelViewSet):
 class MealPlanViewSet(viewsets.ModelViewSet):
     queryset = MealPlan.objects.all()
     serializer_class = MealPlanSerializer
+
+
+class AddIngredientsToList(viewsets.ViewSet):
+    def list(self, request):
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.send)('device', {'type': 'get_ingredients'})
+        return HttpResponse(status=200)
