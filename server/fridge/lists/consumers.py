@@ -1,5 +1,7 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
+
+from meals.models import Ingredient
 from .models import IngredientsList
 from asgiref.sync import async_to_sync
 
@@ -30,8 +32,10 @@ class RaspberryPiConsumer(WebsocketConsumer):
         message = text_data_json['choices'][0]['message']['content']
         ingredients = message.replace(" ", "").split(',')
         IngredientsList.objects.all().delete()
+        print(ingredients)
         for ingredient in ingredients:
-           IngredientsList.objects.create(fridge_ingredients=ingredient)
+            i = Ingredient.objects.get_or_create(name=ingredient)
+            IngredientsList.objects.create(fridge_ingredients=i)
         self.send(text_data=json.dumps({
             'message': "Hello, device!"
         }))
