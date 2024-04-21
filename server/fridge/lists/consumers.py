@@ -1,15 +1,27 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
 from .models import IngredientsList
+from asgiref.sync import async_to_sync
+
 
 class RaspberryPiConsumer(WebsocketConsumer):
     
     def connect(self):
-        self.channel_name = "device"
+        self.channel_name = "deviceg"
+        self.group_name = 'deviceg'  
+        # Add the consumer to the group
+        async_to_sync(self.channel_layer.group_add)(
+            self.group_name,
+            self.channel_name
+        )
         print("Device connected!")
         self.accept()
     
     def disconnect(self, close_code):
+        async_to_sync(self.channel_layer.group_discard)(
+            self.group_name,
+            self.channel_name
+        )
         print("Device disconnected!")
         
     def receive(self, text_data):
@@ -23,3 +35,6 @@ class RaspberryPiConsumer(WebsocketConsumer):
         self.send(text_data=json.dumps({
             'message': "Hello, device!"
         }))
+    
+    def send_message(self, event):
+        self.send(text_data=json.dumps({'message': 'test'}))
