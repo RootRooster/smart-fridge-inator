@@ -3,7 +3,9 @@ from channels.generic.websocket import WebsocketConsumer
 from .models import IngredientsList
 
 class RaspberryPiConsumer(WebsocketConsumer):
+    
     def connect(self):
+        self.channel_name = "device"
         print("Device connected!")
         self.accept()
     
