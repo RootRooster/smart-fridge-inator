@@ -34,7 +34,7 @@ class RaspberryPiConsumer(WebsocketConsumer):
         IngredientsList.objects.all().delete()
         print(ingredients)
         for ingredient in ingredients:
-            i = Ingredient.objects.get_or_create(name=ingredient)
+            i, _ = Ingredient.objects.get_or_create(name=ingredient)
             IngredientsList.objects.create(fridge_ingredients=i)
         self.send(text_data=json.dumps({
             'message': "Hello, device!"
