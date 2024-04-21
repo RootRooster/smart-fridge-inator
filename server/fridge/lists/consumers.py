@@ -15,11 +15,11 @@ class RaspberryPiConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         print(text_data_json)
-        #message = text_data_json['choices'][0]['message']['content']
-        #ingredients = message.replace(" ", "").split(',')
-        #IngredientsList.objects.all().delete()
-        #for ingredient in ingredients:
-        #    IngredientsList.objects.create(fridge_ingredients=ingredient)
+        message = text_data_json['choices'][0]['message']['content']
+        ingredients = message.replace(" ", "").split(',')
+        IngredientsList.objects.all().delete()
+        for ingredient in ingredients:
+           IngredientsList.objects.create(fridge_ingredients=ingredient)
         self.send(text_data=json.dumps({
             'message': "Hello, device!"
         }))
