@@ -15,7 +15,7 @@ class IngredientsListSerializer(serializers.HyperlinkedModelSerializer):
     fridge_ingredients_str = serializers.SerializerMethodField()
     class Meta:
         model = IngredientsList
-        fields = ['fridge_ingredients']
+        fields = ['fridge_ingredients_str']
     
     def get_fridge_ingredients_str(self, obj):
         return obj.fridge_ingredients.name
