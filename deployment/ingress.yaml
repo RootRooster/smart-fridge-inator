@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: server-fridge-ingress
+  namespace: fridge
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-microk8s
+spec:
+  tls:
+  - hosts:
+    - fridge.montalabs.com
+    secretName: fridge-tls
+  rules:
+  - host: fridge.montalabs.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: server-fridge-service
+            port:
+              number: 80

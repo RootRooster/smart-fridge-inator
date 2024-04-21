@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-fridge
+  namespace: fridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server-fridge
+  template:
+    metadata:
+      labels:
+        app: server-fridge
+    spec:
+      imagePullSecrets: 
+        - name: regcred
+      containers:
+      - name: server-fridge
+        image: registry.creativecave.net/fridge-server:v1.2
+        ports:
+        - containerPort: 8000
