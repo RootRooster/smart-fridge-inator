@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-@$hy7lcnglz_g2$gm=$8z^r0c78w^$j(jyuwelf1h(amy=*!!x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fridge.montalabs.com']
+ALLOWED_HOSTS = ['fridge.montalabs.com', 'localhost']
 
 
 # Application definition
@@ -135,4 +135,10 @@ CHANNEL_LAYERS = {
 }
 
 # Daphne
-ASGI_APPLICATION = "mysite.asgi.application"
+ASGI_APPLICATION = "fridge.asgi.application"
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
