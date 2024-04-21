@@ -17,6 +17,6 @@ spec:
         - name: regcred
       containers:
       - name: server-fridge
-        image: registry.creativecave.net/fridge-server:v1.8
+        image: registry.creativecave.net/fridge-server:v1.10
         ports:
         - containerPort: 8000

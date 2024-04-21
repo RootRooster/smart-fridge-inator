@@ -6,7 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {NavigationContainer} from '@react-navigation/native';
 
-import Icon from 'react-native-ico-material-design';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
 import LinearGradient from 'react-native-gradients';
 
@@ -77,9 +77,9 @@ export default function App() {
           <Stack.Screen name="Meal Plan" component={MealPlanScreen} />
         </Stack.Navigator>
         <View style={styles.navigationBar}>
-          <Icon name="add-label-button" />
-          <Icon name="add-label-button" />
-          <Icon name="add-label-button" />
+          <Text style={styles.navigationIcon}><FontAwesome6 name="rocket" size={30} color={'white'}/></Text>
+          <Text style={styles.navigationIcon}><FontAwesome6 name="shopping-basket" size={30} color={'white'}/></Text>
+          <Text style={styles.navigationIcon}><FontAwesome6 name="git" size={30} color={'white'}/></Text>
         </View>
       </NavigationContainer>
   );
@@ -88,12 +88,17 @@ export default function App() {
 
 const styles = StyleSheet.create({
   navigationBar: {
-    backgroundColor: 'red',
+    backgroundColor: '#020202',
     color: '#fff',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+  },
+  navigationIcon: {
+    color: '#fff',
+    fontSize: 20,
+    marginHorizontal: 30,
   },
   container: {
     flex: 1,

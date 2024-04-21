@@ -23,7 +23,7 @@ const FridgeListScreen = ({navigation, route}) => {
   
     const fetchIngredients = async () => {
       try {
-        const response = await fetch('https://fridge.montalabs.com/meals/ingredients/');
+        const response = await fetch('https://fridge.montalabs.com/lists/ingredientslists/');
         const data = await response.json();
   
         // Extract ingredients from the first 10 items
